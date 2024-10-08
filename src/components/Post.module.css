@@ -62,14 +62,6 @@
   color: var(--green-light);
 }
 
-.avatar {
-  border: 4px solid var(--gray-2);
-  border-radius: 8px;
-  height: calc(3rem + 12px);
-  outline: 2px solid var(--green-light);
-  width: calc(3rem + 12px);
-}
-
 .commentForm {
   border-top: 1px solid var(--gray-3);
   display: flex;

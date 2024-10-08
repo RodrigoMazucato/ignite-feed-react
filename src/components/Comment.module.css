@@ -4,12 +4,6 @@
   margin-top: 2rem;
 }
 
-.comment > img {
-  border-radius: 8px;
-  height: 3.125rem;
-  width: 3.125rem;
-}
-
 .comment header {
   align-items: flex-start;
   display: flex;
