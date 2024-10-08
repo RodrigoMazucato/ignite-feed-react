@@ -56,3 +56,10 @@
   background-color: var(--green-light);
   color: white;
 }
+
+@media (max-width: 768px) {
+  .sidebar footer a {
+    max-width: 20rem;
+    margin: 0 auto;
+  }
+}

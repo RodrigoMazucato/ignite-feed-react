@@ -5,5 +5,15 @@
   grid-template-columns: 256px 1fr;
   margin: 2rem auto;
   max-width: 70rem;
-  padding: 0 1rem;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+  .wrapper {
+    grid-template-columns: 1fr;
+    padding: 3rem;
+  }
 }
