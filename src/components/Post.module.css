@@ -1,0 +1,125 @@
+.post {
+  background-color: var(--gray-2);
+  border-radius: 8px;
+  padding: 2.5rem;
+}
+
+.post + .post {
+  margin-top: 2rem;
+}
+
+.author,
+.authorInfo,
+.post header {
+  display: flex;
+}
+
+.post > header {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post > header time {
+  color: var(--gray-5);
+  font-size: 0.875rem;
+}
+
+.author {
+  gap: 1rem;
+  line-height: 1.6;
+}
+
+.authorInfo {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.authorInfo span {
+  color: var(--gray-5);
+  font-size: 0.875rem;
+}
+
+.authorInfo strong {
+  color: var(--gray-7);
+}
+
+.content {
+  color: var(--gray-6);
+  line-height: 1.6;
+}
+
+.content p {
+  margin-top: 1.5rem;
+}
+
+.content a {
+  color: var(--green);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.content a:hover {
+  color: var(--green-light);
+}
+
+.avatar {
+  border: 4px solid var(--gray-2);
+  border-radius: 8px;
+  height: calc(3rem + 12px);
+  outline: 2px solid var(--green-light);
+  width: calc(3rem + 12px);
+}
+
+.commentForm {
+  border-top: 1px solid var(--gray-3);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.commentForm footer {
+  margin: 0 auto;
+  visibility: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.commentForm:focus-within footer {
+  visibility: visible;
+  max-height: 8rem;
+  opacity: 1;
+}
+
+.commentForm > strong {
+  color: var(--gray-7);
+}
+
+.commentForm textarea {
+  background-color: var(--gray-1);
+  border: 0;
+  border-radius: 8px;
+  color: var(--gray-6);
+  height: 6rem;
+  line-height: 1.4;
+  padding: 1rem;
+  resize: none;
+}
+
+.commentForm button[type="submit"] {
+  background-color: var(--green);
+  border-color: transparent;
+  border-radius: 8px;
+  color: var(--white);
+  cursor: pointer;
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  transition: background-color 0.2s;
+  width: 6.75rem;
+}
+
+.commentForm button[type="submit"]:hover {
+  background-color: var(--green-light);
+}
