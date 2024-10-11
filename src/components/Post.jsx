@@ -1,32 +1,52 @@
 import styles from "./Post.module.css";
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
+import { format, formatDistanceToNow, formatISO } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 
-export function Post() {
+export function Post({ author, content, publishedAt }) {
+  const dateDifference = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  });
+  const formattedDate = format(publishedAt, "d 'de' MMMM 'de' y 'às' H:mm", {
+    locale: ptBR,
+  });
   return (
     <main className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://github.com/rodrigomazucato.png" />
+          <Avatar src={author.avatarUrl} />
           <div className={styles.authorInfo}>
-            <strong>Rodrigo Mazucato</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
-        <time title="7 de Outubro às 15:00" dateTime="2024-10-07 15:00">
-          Publicado há 1h
+        <time title={formattedDate} dateTime={formatISO(publishedAt)}>
+          Publicado {dateDifference}
         </time>
       </header>
 
       <div className={styles.content}>
-        <p>Fala galeraa 👋</p>
-        <p>
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
-        </p>
-        <p>
-          👉 <a href="#">jane.design/doctorcare</a>
-        </p>
+        {content.map((line) => {
+          switch (line.type) {
+            case "paragraph":
+              return <p>{line.text}</p>;
+            case "link":
+              return (
+                <p>
+                  <a
+                    href={`https://${line.text}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    👉 {line.text}
+                  </a>
+                </p>
+              );
+          }
+        })}
+
         <p>
           <a href="#">#novoprojeto</a>
           {"  "}

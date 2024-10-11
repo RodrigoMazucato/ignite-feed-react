@@ -4,6 +4,43 @@ import { Sidebar } from "./components/Sidebar";
 import styles from "./App.module.css";
 import "./global.css";
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: "https://github.com/rodrigomazucato.png",
+      name: "Rodrigo Mazucato",
+      role: "Full-Stack Developer",
+    },
+    content: [
+      { type: "paragraph", text: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        text: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", text: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2024-10-09 12:00"),
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: "https://github.com/joselainejrs.png",
+      name: "Joselaine Romão",
+      role: "UX / UI Designer",
+    },
+    content: [
+      { type: "paragraph", text: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        text: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", text: "josi.design/doctorcare" },
+    ],
+    publishedAt: new Date("2024-10-11 13:00"),
+  },
+];
+
 function App() {
   return (
     <>
@@ -11,8 +48,16 @@ function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post />
-          <Post />
+          {posts.map((post, index) => {
+            return (
+              <Post
+                key={index}
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            );
+          })}
         </main>
       </div>
     </>
