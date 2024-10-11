@@ -69,7 +69,7 @@ export function Post({ author, content, publishedAt }) {
         className={styles.commentForm}
         onSubmit={() => {
           event.preventDefault();
-          setCommentList([...commentList, newComment]);
+          setCommentList([newComment, ...commentList]);
           setNewComment("");
         }}
       >
