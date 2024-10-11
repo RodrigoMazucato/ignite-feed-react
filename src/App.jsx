@@ -18,7 +18,7 @@ const posts = [
         type: "paragraph",
         text: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
       },
-      { type: "link", text: "jane.design/doctorcare" },
+      { type: "link", text: "rodrigo.design/doctorcare" },
     ],
     publishedAt: new Date("2024-10-09 12:00"),
   },
@@ -38,6 +38,23 @@ const posts = [
       { type: "link", text: "josi.design/doctorcare" },
     ],
     publishedAt: new Date("2024-10-11 13:00"),
+  },
+  {
+    id: 3,
+    author: {
+      avatarUrl: "https://github.com/gustrpaz.png",
+      name: "Gustavo Rezende",
+      role: "Cloud Engineer",
+    },
+    content: [
+      { type: "paragraph", text: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        text: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", text: "gu.design/doctorcare" },
+    ],
+    publishedAt: new Date("2024-10-11 15:00"),
   },
 ];
 

@@ -15,6 +15,14 @@ export function Post({ author, content, publishedAt }) {
   });
   const [commentList, setCommentList] = useState([]);
   const [newComment, setNewComment] = useState("");
+
+  function deleteComment(commentToDelete) {
+    const commentsWithoutDeletedOne = commentList.filter(
+      (comment) => comment != commentToDelete
+    );
+    console.log(commentsWithoutDeletedOne);
+    setCommentList(commentsWithoutDeletedOne);
+  }
   return (
     <main className={styles.post}>
       <header>
@@ -79,7 +87,9 @@ export function Post({ author, content, publishedAt }) {
       </form>
       <div className={styles.commentList}>
         {commentList.map((comment) => {
-          return <Comment key={comment} text={comment} />;
+          return (
+            <Comment key={comment} text={comment} onDelete={deleteComment} />
+          );
         })}
       </div>
     </main>
