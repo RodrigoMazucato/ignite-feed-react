@@ -16,9 +16,9 @@ export function Post({ author, content, publishedAt }) {
   const [commentList, setCommentList] = useState([]);
   const [newComment, setNewComment] = useState("");
 
-  function deleteComment(commentToDelete) {
+  function deleteComment(idToDelete) {
     const commentsWithoutDeletedOne = commentList.filter(
-      (comment) => comment != commentToDelete
+      (_, index) => index != idToDelete
     );
     console.log(commentsWithoutDeletedOne);
     setCommentList(commentsWithoutDeletedOne);
@@ -86,9 +86,14 @@ export function Post({ author, content, publishedAt }) {
         </footer>
       </form>
       <div className={styles.commentList}>
-        {commentList.map((comment) => {
+        {commentList.map((comment, index) => {
           return (
-            <Comment key={comment} text={comment} onDelete={deleteComment} />
+            <Comment
+              key={index}
+              id={index}
+              text={comment}
+              onDelete={deleteComment}
+            />
           );
         })}
       </div>
