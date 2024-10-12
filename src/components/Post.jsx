@@ -15,6 +15,7 @@ export function Post({ author, content, publishedAt }) {
   });
   const [commentList, setCommentList] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const isCommentEmpty = newComment.length == 0;
 
   function deleteComment(idToDelete) {
     const commentsWithoutDeletedOne = commentList.filter(
@@ -78,11 +79,18 @@ export function Post({ author, content, publishedAt }) {
           placeholder="Deixe um comentário..."
           value={newComment}
           onChange={() => {
+            event.target.setCustomValidity("");
             setNewComment(event.target.value);
           }}
+          onInvalid={() =>
+            event.target.setCustomValidity("Esse campo é obrigatório!")
+          }
+          required
         />
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={isCommentEmpty}>
+            Publicar
+          </button>
         </footer>
       </form>
       <div className={styles.commentList}>
