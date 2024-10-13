@@ -2,10 +2,27 @@ import styles from "./Post.module.css";
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import { format, formatDistanceToNow, formatISO } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
-import { useState } from "react";
+import { ptBR } from "date-fns/locale/pt-BR";
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
 
-export function Post({ author, content, publishedAt }) {
+interface Author {
+  name: string;
+  role: string;
+  avatarUrl: string;
+}
+
+interface Content {
+  type: "paragraph" | "link";
+  text: string;
+}
+
+interface PostProps {
+  author: Author;
+  content: Content[];
+  publishedAt: Date;
+}
+
+export function Post({ author, content, publishedAt }: PostProps) {
   const dateDifference = formatDistanceToNow(publishedAt, {
     locale: ptBR,
     addSuffix: true,
@@ -13,11 +30,11 @@ export function Post({ author, content, publishedAt }) {
   const formattedDate = format(publishedAt, "d 'de' MMMM 'de' y 'às' H:mm", {
     locale: ptBR,
   });
-  const [commentList, setCommentList] = useState([]);
+  const [commentList, setCommentList] = useState<string[]>([]);
   const [newComment, setNewComment] = useState("");
   const isCommentEmpty = newComment.length == 0;
 
-  function deleteComment(idToDelete) {
+  function deleteComment(idToDelete: number) {
     const commentsWithoutDeletedOne = commentList.filter(
       (_, index) => index != idToDelete
     );
@@ -68,7 +85,7 @@ export function Post({ author, content, publishedAt }) {
 
       <form
         className={styles.commentForm}
-        onSubmit={() => {
+        onSubmit={(event: FormEvent) => {
           event.preventDefault();
           setCommentList([newComment, ...commentList]);
           setNewComment("");
@@ -78,11 +95,11 @@ export function Post({ author, content, publishedAt }) {
         <textarea
           placeholder="Deixe um comentário..."
           value={newComment}
-          onChange={() => {
+          onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
             event.target.setCustomValidity("");
             setNewComment(event.target.value);
           }}
-          onInvalid={() =>
+          onInvalid={(event: InvalidEvent<HTMLTextAreaElement>) =>
             event.target.setCustomValidity("Esse campo é obrigatório!")
           }
           required

@@ -4,7 +4,13 @@ import { ThumbsUp } from "phosphor-react";
 import { Trash } from "phosphor-react";
 import { useState } from "react";
 
-export function Comment({ id, text, onDelete }) {
+interface Comment {
+  id: number;
+  text: string;
+  onDelete: (id: number) => void;
+}
+
+export function Comment({ id, text, onDelete }: Comment) {
   const [likeCount, setLikeCount] = useState(0);
   return (
     <div className={styles.comment}>
