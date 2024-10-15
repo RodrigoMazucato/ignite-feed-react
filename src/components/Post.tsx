@@ -65,11 +65,7 @@ export function Post({ author, content, publishedAt }: PostProps) {
             case "link":
               return (
                 <p key={index}>
-                  <a
-                    href={`https://${line.text}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="#" rel="noopener noreferrer">
                     👉 {line.text}
                   </a>
                 </p>
