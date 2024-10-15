@@ -16,10 +16,11 @@ interface Content {
   text: string;
 }
 
-interface PostProps {
+export interface PostProps {
+  id?: number;
   author: Author;
   content: Content[];
-  publishedAt: Date;
+  publishedAt: string | Date;
 }
 
 export function Post({ author, content, publishedAt }: PostProps) {

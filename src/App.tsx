@@ -1,24 +1,25 @@
 import { Header } from "./components/Header";
-import { Post } from "./components/Post";
+import { Post, PostProps } from "./components/Post";
 import { Sidebar } from "./components/Sidebar";
-import posts from "./posts.json";
+import postsData from "./posts.json";
 import styles from "./App.module.css";
 import "./global.css";
 
 function App() {
+  const posts = postsData as PostProps[];
   return (
     <>
       <Header />
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          {posts.map((post) => {
+          {posts.map((post: PostProps) => {
             return (
               <Post
                 key={post.id}
                 author={post.author}
                 content={post.content}
-                publishedAt={post.publishedAt}
+                publishedAt={new Date(post.publishedAt)}
               />
             );
           })}
