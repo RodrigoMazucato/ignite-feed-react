@@ -1,8 +1,11 @@
-import styles from "./Comment.module.css";
 import { Avatar } from "./Avatar";
 import { ThumbsUp } from "phosphor-react";
 import { Trash } from "phosphor-react";
 import { useState } from "react";
+import { format, formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale/pt-BR";
+import styles from "./Comment.module.css";
+import postData from "../posts.json";
 
 interface Comment {
   id: number;
@@ -12,18 +15,27 @@ interface Comment {
 
 export function Comment({ id, text, onDelete }: Comment) {
   const [likeCount, setLikeCount] = useState(0);
+  const authorName = postData[0].author.name;
+  const currentDate = Date.now();
+  const formattedDate = format(currentDate, "d 'de' MMMM 'de' y 'às' H:mm", {
+    locale: ptBR,
+  });
+  const dateDifference = formatDistanceToNow(currentDate, {
+    addSuffix: true,
+    locale: ptBR,
+  });
   return (
     <div className={styles.comment}>
-      <Avatar hasBorder={false} src="https://github.com/rocketseat.png" />
+      <Avatar hasBorder={false} src="https://github.com/rodrigomazucato.png" />
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>
             <div className={styles.authorAndTime}>
               <strong>
-                Devon Lane <span>(você)</span>
+                {authorName} <span>(você)</span>
               </strong>
-              <time title="7 de Outubro às 21:48" dateTime="2024-10-07 21:48">
-                Cerca de 2h
+              <time title={formattedDate} dateTime={currentDate.toString()}>
+                {dateDifference}
               </time>
             </div>
             <button title="Deletar comentário" onClick={() => onDelete(id)}>
