@@ -1,4 +1,5 @@
 import { Avatar } from "./Avatar";
+import { profileImage } from "./Sidebar";
 import { ThumbsUp } from "phosphor-react";
 import { Trash } from "phosphor-react";
 import { useState } from "react";
@@ -26,7 +27,7 @@ export function Comment({ id, text, onDelete }: Comment) {
   });
   return (
     <div className={styles.comment}>
-      <Avatar hasBorder={false} src="https://github.com/rodrigomazucato.png" />
+      <Avatar hasBorder={false} src={profileImage} />
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>
